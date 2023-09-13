@@ -1,65 +1,80 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-body{
+body {
     height: 100vh;
 }
 
 
-.container{
+.container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px
+    margin-top: 30px
 }
 
-i,#heading span{
-    color:#2f61b6;
+i,
+#heading span {
+    color: #2f61b6;
 }
 
-#heading{
+#heading {
     font-size: 50px;
     font-family: 'Open Sans';
-    font-weight:300;
+    font-weight: 300;
     letter-spacing: -1px;
 }
 
-#Book-form{
+#Book-form {
     display: flex;
     flex-direction: column;
     margin-top: 30px;
 }
 
-label{
+label {
     font-size: 13px;
-    font-weight:500;
-    font-family:sans-serif;
+    font-weight: 500;
+    font-family: sans-serif;
 }
 
-.form-control{
-    width: 400px;
-    height: 30px;
+.form-control {
+    width: 300px;
+    height: 25px;
     border: 0.2px solid #b7b7b7;
     border-radius: 2px;
     margin: 4px 0px 20px 0px;
-    padding: 0px 5px ;
+    padding: 0px 5px;
     font-size: 15px;
     outline: none
 }
 
-#submit{
+#submit {
     height: 35px;
     border-radius: 5px;
     border: none;
-    margin-top: 5px;
+    margin: 5px 0px 20px 0px;
     background-color: #2f61b6;
     color: white;
     font-size: 15px;
 }
 
-#submit:hover{
+#submit:hover {
     background-color: #1a3b74;
     cursor: pointer;
 }
+
+#table {
+    width: 350px;
+    margin-top: 15px;
+    border-collapse: collapse;
+}
+
+td, th {
+    border-bottom: 1px solid #b7b7b7;
+    border-top: 1px solid #b7b7b7;
+    padding: 10px 7px;
+    font-size: 12px;
+    text-align:left ;
+  }

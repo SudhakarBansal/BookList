@@ -84,3 +84,15 @@ th {
     border: none;
     cursor: pointer;
 }
+
+.alert {
+    width: 500px;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    z-index: 9999;
+    display: none;
+}

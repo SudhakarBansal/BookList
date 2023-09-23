@@ -1,6 +1,16 @@
 import storedBooks from "./storedBooks.js";
 
+const alertBox = document.querySelector('.alert');
 //display the stored books
+
+function showAlert(msg, color) {
+    alertBox.style.display = 'block';
+    alertBox.textContent = msg;
+    alertBox.style.backgroundColor = color;
+    setTimeout(() => {
+        alertBox.style.display = "none";
+    }, 2000);
+}
 
 function displayBooks() {
     const books = storedBooks;
@@ -25,19 +35,29 @@ function addBooks(book) {
 
 
 const submitButton = document.querySelector('#submit');
-submitButton.addEventListener('click', ((e) => {
+submitButton.addEventListener('click', (e) => {
     e.preventDefault();
-    const title = document.querySelector('#title');
-    const author = document.querySelector('#author');
-    const ISBN = document.querySelector('#isbn');
+
+    const title = document.querySelector('#title').value;
+    const author = document.querySelector('#author').value;
+    const ISBN = document.querySelector('#isbn').value;
+
+    if (!title || !author || !ISBN) {
+        showAlert("Please fill in all fields", "#f44336")
+        return; // Exit the function early if any field is empty
+    }
+
     const newBook = {
-        isbn: ISBN.value,
-        title: title.value,
-        author: author.value
+        isbn: ISBN,
+        title: title,
+        author: author
     };
+
     addBooks(newBook);
-    clearForm(ISBN, title, author);
-}))
+    showAlert("Record Added Successfully", "green")
+    clearForm();
+});
+
 
 //deleting the records
 document.querySelector('#book-list').addEventListener('click', ((e) => {
@@ -45,12 +65,14 @@ document.querySelector('#book-list').addEventListener('click', ((e) => {
     if (element.classList.contains('delbtn')) {
         element.parentElement.parentElement.remove();
     }
+    showAlert("Record Deleted Successfully", "green")
+
 }))
 
 
 //clearing the form
-function clearForm(isbn, title, author) {
-    title.value = "";
-    author.value = "";
-    isbn.value = "";
+function clearForm() {
+    document.querySelector('#title').value = "";
+    document.querySelector('#author').value = "";
+    document.querySelector('#isbn').value = "";
 }

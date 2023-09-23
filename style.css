@@ -71,10 +71,15 @@ label {
     border-collapse: collapse;
 }
 
-td, th {
+td,
+th {
     border-bottom: 1px solid #b7b7b7;
     border-top: 1px solid #b7b7b7;
     padding: 10px 7px;
     font-size: 12px;
-    text-align:left ;
-  }
+    text-align: left;
+}
+
+.delbtn {
+    border: none;
+}

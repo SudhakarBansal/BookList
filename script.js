@@ -30,14 +30,21 @@ submitButton.addEventListener('click', ((e) => {
     const title = document.querySelector('#title');
     const author = document.querySelector('#author');
     const ISBN = document.querySelector('#isbn');
-    addBooks(ISBN.value, title.value, author.value);
+    const newBook = {
+        isbn: ISBN.value,
+        title: title.value,
+        author: author.value
+    };
+    addBooks(newBook);
     clearForm(ISBN, title, author);
 }))
 
 //deleting the records
-const delbtn = document.getElementsByTagName('button')[0];
-delbtn.addEventListener('click', ((e) => {
-    console.log(delbtn);
+document.querySelector('#book-list').addEventListener('click', ((e) => {
+    const element = e.target;
+    if (element.classList.contains('delbtn')) {
+        element.parentElement.parentElement.remove();
+    }
 }))
 
 

@@ -1,7 +1,31 @@
-import storedBooks from "./storedBooks.js";
-
 const alertBox = document.querySelector('.alert');
 //display the stored books
+
+function getBookFromLocalStorage() {
+    let localBook;
+    if (localStorage.getItem('localBook') === null) {
+        localBook = [];
+    } else {
+        localBook = JSON.parse(localStorage.getItem('localBook'));
+    }
+    return localBook;
+}
+
+function addBooksTolocalStorage(book) {
+    const localBook = getBookFromLocalStorage();
+    localBook.push(book);
+    localStorage.setItem('localBook', JSON.stringify(localBook));
+}
+
+function removeBookFromLocalStorage(isbn) {
+    const localBook = getBookFromLocalStorage();
+    localBook.forEach((book, index) => {
+        if (book.isbn === isbn) {
+            localBook.splice(index, 1);
+        }
+    });
+    localStorage.setItem('localBook', JSON.stringify(localBook));
+}
 
 function showAlert(msg, color) {
     alertBox.style.display = 'block';
@@ -13,7 +37,7 @@ function showAlert(msg, color) {
 }
 
 function displayBooks() {
-    const books = storedBooks;
+    const books = getBookFromLocalStorage();
     books.forEach((book) => {
         addBooks(book);
     });
@@ -54,6 +78,7 @@ submitButton.addEventListener('click', (e) => {
     };
 
     addBooks(newBook);
+    addBooksTolocalStorage(newBook);
     showAlert("Record Added Successfully", "green")
     clearForm();
 });
@@ -64,8 +89,9 @@ document.querySelector('#book-list').addEventListener('click', ((e) => {
     const element = e.target;
     if (element.classList.contains('delbtn')) {
         element.parentElement.parentElement.remove();
+        removeBookFromLocalStorage(e.target.parentElement.parentElement.firstElementChild.textContent);
+        showAlert("Record Deleted Successfully", "green")
     }
-    showAlert("Record Deleted Successfully", "green")
 
 }))
 

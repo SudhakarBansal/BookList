@@ -95,4 +95,5 @@ th {
     top: 0;
     z-index: 9999;
     display: none;
+    border-radius: 0 0 20px 20px;
 }
